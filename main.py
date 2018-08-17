@@ -1,6 +1,11 @@
 import os
 import tweepy
 
+
+def list_split(n: int, list):
+    return [list[i:i+n] for i in range(0, len(list), n)]
+
+
 # 環境変数取得
 ck = os.environ["CK"]
 cs = os.environ["CS"]
@@ -30,9 +35,9 @@ members = set([x.id for x in tweepy.Cursor(
     api.list_members, list_id=list_id).items()])
 
 # リストに追加
-for id in friends-members:
-    api.add_list_member(list_id=list_id, user_id=id)
+for ids in list_split(100, list(friends-members)):
+    api.add_list_members(list_id=list_id, user_id=ids)
 
 # リストから削除
-for id in members-friends:
-    api.remove_list_member(list_id=list_id, user_id=id)
+for ids in list_split(100, list(members-friends)):
+    api.remove_list_members(list_id=list_id, user_id=ids)
