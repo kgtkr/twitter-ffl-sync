@@ -1,5 +1,8 @@
 import os
 import tweepy
+from dotenv import load_dotenv
+
+load_dotenv(".env")
 
 
 def list_split(n: int, list):
@@ -7,11 +10,11 @@ def list_split(n: int, list):
 
 
 # 環境変数取得
-ck = os.environ["CK"]
-cs = os.environ["CS"]
-tk = os.environ["TK"]
-ts = os.environ["TS"]
-list_name = os.environ["LIST_NAME"]
+ck = os.environ["ck"]
+cs = os.environ["cs"]
+tk = os.environ["tk"]
+ts = os.environ["ts"]
+list_name = os.environ["list"]
 
 # 認証
 auth = tweepy.OAuthHandler(ck, cs)
